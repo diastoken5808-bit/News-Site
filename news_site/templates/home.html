@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Новости</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f4f4;
+            margin: 0;
+        }
+        header {
+            background: #222;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+        }
+        .search-box {
+            margin: 20px 0;
+            text-align: center;
+        }
+        input {
+            padding: 10px;
+            width: 200px;
+        }
+        button {
+            padding: 10px 15px;
+            background: #007BFF;
+            color: white;
+            border: none;
+        }
+        .card {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+        }
+        a {
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>📰 Новости WSJ</h1>
+</header>
+
+<div class="container">
+
+    <div class="search-box">
+        <form method="get">
+            <input type="text" name="q" placeholder="Поиск..." value="{{ query }}">
+            <input type="number" name="num" value="{{ num }}" min="1">
+            <button type="submit">Найти</button>
+        </form>
+    </div>
+
+    {% for article in articles %}
+        <div class="card">
+            <h3>{{ article.title }}</h3>
+            <p><strong>Автор:</strong> {{ article.author }}</p>
+            <a href="{{ article.url }}" target="_blank">Читать</a>
+        </div>
+    {% empty %}
+        <p>Новостей не найдено</p>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

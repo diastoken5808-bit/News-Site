@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">Новости</h1>
+
+<form method="get" class="row mb-4">
+    <div class="col-md-6 mb-2">
+        <input type="text" name="q" class="form-control"
+               placeholder="Например: Tesla"
+               value="{{ query }}">
+    </div>
+
+    <div class="col-md-3 mb-2">
+        <input type="number" name="num" class="form-control"
+        placeholder="Количество новостей"
+        value="{{ num }}" min="1" max="20">
+    </div>
+
+    <div class="col-md-3 mb-2">
+        <button type="submit" class="btn btn-primary w-100">
+            Найти
+        </button>
+    </div>
+</form>
+
+<h5 class="mb-3">
+    Результаты по запросу: <strong>{{ query }}</strong> ({{ num }} новостей)
+</h5>
+
+<div class="row">
+    {% for article in articles %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ article.title }}</h5>
+                    <p class="card-text">
+                        {{ article.description|truncatewords:20 }}
+                    </p>
+                </div>
+                <div class="card-footer bg-white border-0">
+                    <a href="{{ article.url }}" target="_blank"
+                       class="btn btn-primary w-100">
+                        Читать
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}с

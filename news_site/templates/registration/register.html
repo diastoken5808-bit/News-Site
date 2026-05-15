@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+        <p style="color:red;">{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card shadow p-4" style="width: 100%; max-width: 400px; border-radius: 15px;">
+
+        <h3 class="text-center mb-4">Регистрация</h3>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label class="form-label">Имя пользователя</label>
+                <input type="text" name="username" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" name="email" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Пароль</label>
+                <input type="password" name="password1" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Повторите пароль</label>
+                <input type="password" name="password2" class="form-control">
+            </div>
+
+            <button type="submit" class="btn btn-warning w-100">
+                Зарегистрироваться
+            </button>
+        </form>
+
+        <p class="text-center mt-3">
+            Уже есть аккаунт?
+            <a href="/login/">Войти</a>
+        </p>
+
+    </div>
+</div>
+
+{% endblock %}
